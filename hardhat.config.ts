@@ -45,6 +45,13 @@ const config: HardhatUserConfig = {
       // @ts-ignore
       accounts: [`0x${process.env.KOVAN_DEPLOY_PRIVATE_KEY}`],
     },
+    ropsten: {
+      url: "https://ropsten.infura.io/v3/" + process.env.INFURA_TOKEN,
+      // @ts-ignore
+      accounts: [`0x${process.env.KOVAN_DEPLOY_PRIVATE_KEY}`],
+      gas: 12000000,
+      blockGasLimit: 12000000,
+    },
     staging_mainnet: {
       url: "https://mainnet.infura.io/v3/" + process.env.INFURA_TOKEN,
       // @ts-ignore
