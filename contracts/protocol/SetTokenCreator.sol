@@ -69,7 +69,8 @@ contract SetTokenCreator {
         address[] memory _modules,
         address _manager,
         string memory _name,
-        string memory _symbol
+        string memory _symbol,
+        uint256[] memory _weights
     )
         external
         returns (address)
@@ -78,6 +79,7 @@ contract SetTokenCreator {
         require(_components.length == _units.length, "Component and unit lengths must be the same");
         require(!_components.hasDuplicate(), "Components must not have a duplicate");
         require(_modules.length > 0, "Must have at least 1 module");
+        require(_weights.length > 0, "Must have at least 1 weight");
         require(_manager != address(0), "Manager must not be empty");
 
         for (uint256 i = 0; i < _components.length; i++) {
@@ -89,6 +91,13 @@ contract SetTokenCreator {
             require(controller.isModule(_modules[j]), "Must be enabled module");
         }
 
+        uint totalWeight = 0;
+        for (uint256 k = 0; k < _weights.length; k++) {
+            require(_weights[k] > 0, "Weights must be greater than 0");
+            totalWeight += _weights[k];
+        }
+        require(totalWeight == 100, "Sum of weights should be 100");
+
         // Creates a new SetToken instance
         SetToken setToken = new SetToken(
             _components,
@@ -97,7 +106,8 @@ contract SetTokenCreator {
             controller,
             _manager,
             _name,
-            _symbol
+            _symbol,
+            _weights
         );
 
         // Registers Set with controller

@@ -49,6 +49,7 @@ export default class DeployCoreContracts {
     _manager: Address,
     _name: string,
     _symbol: string,
+    _weights: BigNumberish[],
   ): Promise<SetToken> {
     return await new SetToken__factory(this._deployerSigner).deploy(
       _components,
@@ -58,6 +59,7 @@ export default class DeployCoreContracts {
       _manager,
       _name,
       _symbol,
+      _weights,
     );
   }
 

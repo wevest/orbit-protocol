@@ -83,6 +83,7 @@ describe("SetTokenCreator", () => {
       let subjectManager: Address;
       let subjectName: string;
       let subjectSymbol: string;
+      let subjectWeights: BigNumber[];
 
       beforeEach(async () => {
         firstComponent = await deployer.mocks.deployTokenMock(manager.address);
@@ -99,6 +100,7 @@ describe("SetTokenCreator", () => {
         subjectManager = await getRandomAddress();
         subjectName = "TestSetTokenCreator";
         subjectSymbol = "SET";
+        subjectWeights = [BigNumber.from(50), BigNumber.from(50)];
       });
 
       async function subject(): Promise<any> {
@@ -109,6 +111,7 @@ describe("SetTokenCreator", () => {
           subjectManager,
           subjectName,
           subjectSymbol,
+          subjectWeights,
         );
       }
 
@@ -188,6 +191,16 @@ describe("SetTokenCreator", () => {
 
         it("should revert", async () => {
           await expect(subject()).to.be.revertedWith("Must have at least 1 module");
+        });
+      });
+
+      describe("when no weights are passed in", async () => {
+        beforeEach(async () => {
+          subjectWeights = [];
+        });
+
+        it("should revert", async () => {
+          await expect(subject()).to.be.revertedWith("Must have at least 1 weight");
         });
       });
 

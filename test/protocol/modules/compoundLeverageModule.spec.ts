@@ -944,6 +944,7 @@ describe("CompoundLeverageModule", () => {
               [setup.weth.address],
               [ether(1)],
               [compoundLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 
@@ -1641,6 +1642,7 @@ describe("CompoundLeverageModule", () => {
               [setup.weth.address],
               [ether(1)],
               [compoundLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 
@@ -2129,6 +2131,7 @@ describe("CompoundLeverageModule", () => {
               [setup.weth.address],
               [ether(1)],
               [compoundLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 
@@ -2555,6 +2558,7 @@ describe("CompoundLeverageModule", () => {
             [setup.weth.address],
             [ether(1)],
             [compoundLeverageModule.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             owner.address
           );
 

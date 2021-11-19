@@ -14,6 +14,7 @@ import {
   getSystemFixture,
 } from "@utils/test/index";
 import { SystemFixture } from "@utils/fixtures";
+import { BigNumber } from "ethers";
 
 const expect = getWaffleExpect();
 
@@ -54,6 +55,7 @@ describe("SnapshotDelegationModule", () => {
       [setup.weth.address],
       [ether(1)],
       [governanceModule.address],
+      [BigNumber.from(50), BigNumber.from(50)],
       owner.address
     );
 

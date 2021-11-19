@@ -75,6 +75,7 @@ describe("DebtIssuanceModuleV2", () => {
       [tokenWithRoundingError.address],
       [ether(1)],
       [setup.issuanceModule.address, debtIssuance.address, debtModule.address, externalPositionModule.address],
+      [BigNumber.from(50), BigNumber.from(50)],
       manager.address,
       "DebtToken",
       "DBT"

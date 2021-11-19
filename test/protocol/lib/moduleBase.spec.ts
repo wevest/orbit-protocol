@@ -76,6 +76,7 @@ describe("ModuleBase", () => {
         [setup.weth.address, setup.usdc.address],
         [ether(1), ether(200)],
         [moduleBase.address, dummyModule.address],
+        [BigNumber.from(50), BigNumber.from(50)],
         setTokenManager,
       );
     });
@@ -421,7 +422,8 @@ describe("ModuleBase", () => {
             setup.controller.address,
             owner.address,
             "SET",
-            "SET"
+            "SET",
+            [BigNumber.from(50), BigNumber.from(50)]
           );
           subjectSetTokenAddress = nonEnabledSetToken.address;
         });
@@ -489,7 +491,8 @@ describe("ModuleBase", () => {
             setup.controller.address,
             owner.address,
             "SET",
-            "SET"
+            "SET",
+            [BigNumber.from(50), BigNumber.from(50)]
           );
           subjectSetTokenAddress = nonEnabledSetToken.address;
         });
@@ -608,7 +611,8 @@ describe("ModuleBase", () => {
             setup.controller.address,
             owner.address,
             "SET",
-            "SET"
+            "SET",
+            [BigNumber.from(50), BigNumber.from(50)]
           );
           subjectSetTokenAddress = nonEnabledSetToken.address;
         });
@@ -661,7 +665,8 @@ describe("ModuleBase", () => {
             setup.controller.address,
             owner.address,
             "SET",
-            "SET"
+            "SET",
+            [BigNumber.from(50), BigNumber.from(50)],
           );
           subjectSetTokenAddress = nonEnabledSetToken.address;
         });

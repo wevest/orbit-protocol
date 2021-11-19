@@ -154,6 +154,7 @@ contract SetToken is ERC20 {
      * @param _manager                Address of the manager
      * @param _name                   Name of the SetToken
      * @param _symbol                 Symbol of the SetToken
+     * @param _weights                Weight of the SetToken
      */
     constructor(
         address[] memory _components,
@@ -162,7 +163,8 @@ contract SetToken is ERC20 {
         IController _controller,
         address _manager,
         string memory _name,
-        string memory _symbol
+        string memory _symbol,
+        uint256[] memory _weights
     )
         public
         ERC20(_name, _symbol)

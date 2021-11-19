@@ -68,6 +68,7 @@ describe("DebtIssuanceModule", () => {
       [setup.weth.address],
       [ether(1)],
       [setup.issuanceModule.address, debtIssuance.address, debtModule.address, externalPositionModule.address],
+      [BigNumber.from(50), BigNumber.from(50)],
       manager.address,
       "DebtToken",
       "DBT"
@@ -159,6 +160,7 @@ describe("DebtIssuanceModule", () => {
           [setup.weth.address],
           [ether(1)],
           [newModule],
+          [BigNumber.from(50), BigNumber.from(50)],
           manager.address
         );
 
@@ -176,6 +178,7 @@ describe("DebtIssuanceModule", () => {
           [setup.weth.address],
           [ether(1)],
           [debtIssuance.address],
+          [BigNumber.from(50), BigNumber.from(50)],
           manager.address
         );
 
@@ -1084,6 +1087,7 @@ describe("DebtIssuanceModule", () => {
               [setup.weth.address],
               [ether(1)],
               [debtIssuance.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               manager.address
             );
 
@@ -1166,6 +1170,7 @@ describe("DebtIssuanceModule", () => {
             [setup.weth.address],
             [ether(1)],
             [debtIssuance.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             manager.address
           );
 
@@ -1247,6 +1252,7 @@ describe("DebtIssuanceModule", () => {
             [setup.weth.address],
             [ether(1)],
             [debtIssuance.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             manager.address
           );
 

@@ -316,6 +316,7 @@ describe("GeneralIndexModule", () => {
           [setup.dai.address],
           [ether(1)],
           [indexModule.address],
+          [BigNumber.from(50), BigNumber.from(50)],
           owner.address
         );
 
@@ -484,7 +485,7 @@ describe("GeneralIndexModule", () => {
       describe("when newComponents contains an old component", async () => {
         beforeEach(async () => {
           subjectNewComponents = [sushiswapSetup.uni.address, uniswapSetup.uni.address];
-          subjectNewTargetUnits = [ether(50), ether(50)];
+          subjectNewTargetUnits = [BigNumber.from(50), BigNumber.from(50)];
         });
 
         it("should revert", async () => {

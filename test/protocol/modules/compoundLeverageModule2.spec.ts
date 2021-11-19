@@ -409,6 +409,7 @@ describe("CompoundLeverageModule TestSuite 2", () => {
               [setup.weth.address],
               [ether(1)],
               [compoundLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 

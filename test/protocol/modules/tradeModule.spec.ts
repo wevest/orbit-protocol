@@ -226,6 +226,7 @@ describe("TradeModule", () => {
         [sourceToken.address],
         [wbtcUnits],
         [setup.issuanceModule.address, tradeModule.address],
+        [BigNumber.from(50), BigNumber.from(50)],
         manager.address
       );
     });
@@ -276,6 +277,7 @@ describe("TradeModule", () => {
             [setup.dai.address],
             [ether(1)],
             [tradeModule.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             manager.address
           );
 
@@ -670,6 +672,7 @@ describe("TradeModule", () => {
                 [setup.weth.address],
                 [ether(1)],
                 [tradeModule.address],
+                [BigNumber.from(50), BigNumber.from(50)],
                 manager.address
               );
 

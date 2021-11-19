@@ -136,6 +136,7 @@ export class SystemFixture {
     components: Address[],
     units: BigNumber[],
     modules: Address[],
+    weights: BigNumber[] = [BigNumber.from(50), BigNumber.from(50)],
     manager: Address = this._ownerAddress,
     name: string = "SetToken",
     symbol: string = "SET",
@@ -147,6 +148,7 @@ export class SystemFixture {
       manager,
       name,
       symbol,
+      weights,
     );
 
     const retrievedSetAddress = await new ProtocolUtils(this._provider).getCreatedSetTokenAddress(txHash.hash);
@@ -158,6 +160,7 @@ export class SystemFixture {
     components: Address[],
     units: BigNumber[],
     modules: Address[],
+    weights: BigNumber[] = [BigNumber.from(50), BigNumber.from(50)],
     manager: Address = this._ownerAddress,
     name: string = "SetToken",
     symbol: string = "SET",
@@ -169,7 +172,8 @@ export class SystemFixture {
       this.controller.address,
       manager,
       name,
-      symbol
+      symbol,
+      weights
     );
   }
 

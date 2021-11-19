@@ -113,6 +113,7 @@ describe("UniswapExchangeV2 TradeModule Integration [ @forked-mainnet ]", () => 
           [sourceToken.address],
           [wbtcUnits],
           [setup.issuanceModule.address, tradeModule.address],
+          [BigNumber.from(50), BigNumber.from(50)],
           manager.address
         );
 

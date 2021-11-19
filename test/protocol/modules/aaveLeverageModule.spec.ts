@@ -408,7 +408,7 @@ describe("AaveLeverageModule", () => {
           const nonEnabledSetToken = await setup.createNonControllerEnabledSetToken(
             [setup.weth.address],
             [ether(1)],
-            [aaveLeverageModule.address]
+            [aaveLeverageModule.address],
           );
 
           subjectSetToken = nonEnabledSetToken.address;
@@ -883,6 +883,7 @@ describe("AaveLeverageModule", () => {
               [setup.weth.address],
               [ether(1)],
               [aaveLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 
@@ -1461,6 +1462,7 @@ describe("AaveLeverageModule", () => {
             [setup.weth.address],
             [ether(1)],
             [aaveLeverageModule.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             owner.address
           );
 
@@ -1771,6 +1773,7 @@ describe("AaveLeverageModule", () => {
             [setup.weth.address],
             [ether(1)],
             [aaveLeverageModule.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             owner.address
           );
 
@@ -2076,6 +2079,7 @@ describe("AaveLeverageModule", () => {
               [setup.weth.address],
               [ether(1)],
               [aaveLeverageModule.address],
+              [BigNumber.from(50), BigNumber.from(50)],
               owner.address
             );
 
@@ -2618,6 +2622,7 @@ describe("AaveLeverageModule", () => {
             [setup.weth.address],
             [ether(1)],
             [aaveLeverageModule.address],
+            [BigNumber.from(50), BigNumber.from(50)],
             owner.address
           );
 

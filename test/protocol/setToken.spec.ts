@@ -63,6 +63,7 @@ describe("SetToken", () => {
 
     let subjectComponentAddresses: Address[];
     let subjectUnits: BigNumber[];
+    let subjectWeights: BigNumber[];
     let subjectModuleAddresses: Address[];
     let subjectControllerAddress: Address;
     let subjectManagerAddress: Address;
@@ -83,6 +84,7 @@ describe("SetToken", () => {
       subjectManagerAddress = manager.address;
       subjectName = "TestSetToken";
       subjectSymbol = "SET";
+      subjectWeights = [BigNumber.from(50), BigNumber.from(50)];
     });
 
     async function subject(): Promise<any> {
@@ -93,7 +95,8 @@ describe("SetToken", () => {
         subjectControllerAddress,
         subjectManagerAddress,
         subjectName,
-        subjectSymbol
+        subjectSymbol,
+        subjectWeights,
       );
     }
 
@@ -158,6 +161,7 @@ describe("SetToken", () => {
 
     let components: Address[];
     let units: BigNumber[];
+    let weights: BigNumber[];
     let modules: Address[];
     let name: string;
     let symbol: string;
@@ -186,6 +190,7 @@ describe("SetToken", () => {
       modules = [mockBasicIssuanceModule.address, mockLockedModule.address];
       name = "TestSetToken";
       symbol = "SET";
+      weights = [BigNumber.from(50), BigNumber.from(50)];
 
       await controller.initialize([], modules, [], []);
 
@@ -197,6 +202,7 @@ describe("SetToken", () => {
         manager.address,
         name,
         symbol,
+        weights,
       );
 
       setToken = setToken.connect(mockBasicIssuanceModule.wallet);
@@ -287,7 +293,8 @@ describe("SetToken", () => {
             controller.address,
             manager.address,
             name,
-            symbol
+            symbol,
+            weights,
           );
 
           transferBalance = ether(2);

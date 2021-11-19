@@ -57,6 +57,7 @@ describe("ProtocolViewer", () => {
       [setup.weth.address],
       [ether(1)],
       [setup.issuanceModule.address, setup.streamingFeeModule.address, dummyModule.address],
+      [BigNumber.from(50), BigNumber.from(50)],
       managerOne.address,
       "FirstSetToken",
       "ONE"
@@ -66,6 +67,7 @@ describe("ProtocolViewer", () => {
       [setup.wbtc.address],
       [ether(1)],
       [setup.issuanceModule.address, setup.streamingFeeModule.address],
+      [BigNumber.from(50), BigNumber.from(50)],
       managerTwo.address,
       "SecondSetToken",
       "TWO"
