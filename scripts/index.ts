@@ -1,4 +1,6 @@
 import "module-alias/register";
+import { ADDRESS_ZERO } from "../utils/constants";
+import { BigNumber } from "ethers";
 
 const hre = require("hardhat");
 const WETH9Compiled = require("../external/abi/weth/WETH9.json");
@@ -37,6 +39,27 @@ async function main(): Promise<void> {
 
   console.log("IntegrationRegistry added to controller as resource");
 
+  const PriceOracle = await hre.ethers.getContractFactory("PriceOracle");
+  const priceOracle = await PriceOracle.deploy(controller.address, ADDRESS_ZERO, [], [], [], []);
+
+  await priceOracle.deployed();
+
+  console.log("PriceOracle deployed to:", priceOracle.address);
+
+  const SetValuer = await hre.ethers.getContractFactory("SetValuer");
+  const setValuer = await SetValuer.deploy(controller.address);
+
+  await setValuer.deployed();
+
+  console.log("SetValuer deployed to:", setValuer.address);
+
+  const ProtocolViewer = await hre.ethers.getContractFactory("ProtocolViewer");
+  const protocolViewer = await ProtocolViewer.deploy();
+
+  await protocolViewer.deployed();
+
+  console.log("ProtocolViewer deployed to:", protocolViewer.address);
+
   const AmmModule = await hre.ethers.getContractFactory("AmmModule");
   const ammModule = await AmmModule.deploy(controller.address);
 
@@ -59,6 +82,17 @@ async function main(): Promise<void> {
 
   console.log("BasicIssuanceModule added to controller");
 
+  const StreamingFeeModule = await hre.ethers.getContractFactory("StreamingFeeModule");
+  const streamingFeeModule = await StreamingFeeModule.deploy(controller.address);
+
+  await streamingFeeModule.deployed();
+
+  console.log("StreamingFeeModule deployed to:", streamingFeeModule.address);
+
+  await controller.addModule(streamingFeeModule.address);
+
+  console.log("StreamingFeeModule added to controller");
+
   const WETH9 = await hre.ethers.getContractFactory(WETH9Compiled.abi, WETH9Compiled.bytecode);
   const weth = await WETH9.deploy();
 
@@ -71,6 +105,146 @@ async function main(): Promise<void> {
 
   var wethBalance = await weth.balanceOf(accounts[0].address);
   console.log(`User WETH Balance: ${wethBalance}`);
+
+  /**
+   * NavIssuanceModule
+   */
+  const NavIssuanceModule = await hre.ethers.getContractFactory("NavIssuanceModule");
+  const navIssuanceModule = await NavIssuanceModule.deploy(controller.address, weth.address);
+
+  await navIssuanceModule.deployed();
+
+  console.log("NavIssuanceModule deployed to:", navIssuanceModule.address);
+
+  await controller.addModule(navIssuanceModule.address);
+
+  console.log("NavIssuanceModule added to controller");
+
+  /**
+   * TradeModule
+   */
+  const TradeModule = await hre.ethers.getContractFactory("TradeModule");
+  const tradeModule = await TradeModule.deploy(controller.address);
+
+  await tradeModule.deployed();
+
+  console.log("TradeModule deployed to:", tradeModule.address);
+
+  await controller.addModule(tradeModule.address);
+
+  console.log("TradeModule added to controller");
+
+  /**
+   * WrapModule
+   */
+  const WrapModule = await hre.ethers.getContractFactory("WrapModule");
+  const wrapModule = await WrapModule.deploy(controller.address, weth.address);
+
+  await wrapModule.deployed();
+
+  console.log("WrapModule deployed to:", wrapModule.address);
+
+  await controller.addModule(wrapModule.address);
+
+  console.log("WrapModule added to controller");
+
+  /**
+   * GovernanceModule
+   */
+  const GovernanceModule = await hre.ethers.getContractFactory("GovernanceModule");
+  const governanceModule = await GovernanceModule.deploy(controller.address);
+
+  await governanceModule.deployed();
+
+  console.log("GovernanceModule deployed to:", governanceModule.address);
+
+  await controller.addModule(governanceModule.address);
+
+  console.log("GovernanceModule added to controller");
+
+  /**
+   * DebtIssuanceModule
+   */
+  const DebtIssuanceModule = await hre.ethers.getContractFactory("DebtIssuanceModule");
+  const debtIssuanceModule = await DebtIssuanceModule.deploy(controller.address);
+
+  await debtIssuanceModule.deployed();
+
+  console.log("DebtIssuanceModule deployed to:", debtIssuanceModule.address);
+
+  await controller.addModule(debtIssuanceModule.address);
+
+  console.log("DebtIssuanceModule added to controller");
+
+  /**
+   * GeneralIndexModule
+   */
+  const GeneralIndexModule = await hre.ethers.getContractFactory("GeneralIndexModule");
+  const generalIndexModule = await GeneralIndexModule.deploy(controller.address, weth.address);
+
+  await generalIndexModule.deployed();
+
+  console.log("GeneralIndexModule deployed to:", generalIndexModule.address);
+
+  await controller.addModule(generalIndexModule.address);
+
+  console.log("GeneralIndexModule added to controller");
+
+  /**
+   * CustomOracleNavIssuanceModule
+   */
+  const CustomOracleNavIssuanceModule = await hre.ethers.getContractFactory("CustomOracleNavIssuanceModule");
+  const customOracleNavIssuanceModule = await CustomOracleNavIssuanceModule.deploy(controller.address, weth.address);
+
+  await customOracleNavIssuanceModule.deployed();
+
+  console.log("CustomOracleNavIssuanceModule deployed to:", customOracleNavIssuanceModule.address);
+
+  await controller.addModule(customOracleNavIssuanceModule.address);
+
+  console.log("CustomOracleNavIssuanceModule added to controller");
+
+  /**
+   * DebtIssuanceModuleV2
+   */
+  const DebtIssuanceModuleV2 = await hre.ethers.getContractFactory("DebtIssuanceModuleV2");
+  const debtIssuanceModuleV2 = await DebtIssuanceModuleV2.deploy(controller.address);
+
+  await debtIssuanceModuleV2.deployed();
+
+  console.log("DebtIssuanceModuleV2 deployed to:", debtIssuanceModuleV2.address);
+
+  await controller.addModule(debtIssuanceModuleV2.address);
+
+  console.log("DebtIssuanceModuleV2 added to controller");
+
+  /**
+   * AaveLeverageModule
+   */
+  /*const AaveLeverageModule = await hre.ethers.getContractFactory("AaveLeverageModule");
+  const aaveLeverageModule = await AaveLeverageModule.deploy(controller.address, weth.address);
+
+  await aaveLeverageModule.deployed();
+
+  console.log("AaveLeverageModule deployed to:", aaveLeverageModule.address);
+
+  await controller.addModule(aaveLeverageModule.address);
+
+  console.log("AaveLeverageModule added to controller");*/
+
+  /**
+   * CompoundLeverageModule
+   */
+  /*const CompoundLeverageModule = await hre.ethers.getContractFactory("CompoundLeverageModule");
+  const compoundLeverageModule = await CompoundLeverageModule.deploy(controller.address);
+
+  await compoundLeverageModule.deployed();
+
+  console.log("CompoundLeverageModule deployed to:", compoundLeverageModule.address);
+
+  await controller.addModule(compoundLeverageModule.address);
+
+  console.log("CompoundLeverageModule added to controller");*/
 
   var blockNum = await hre.ethers.provider.getBlockNumber();
   var block = await hre.ethers.provider.getBlock(blockNum);
@@ -140,7 +314,7 @@ async function main(): Promise<void> {
 
   receipt = await setTokenCreator.create([weth.address, uni.address],
     ['1000000000000000000', '120000000000000000000'],
-    [ammModule.address, basicIssuanceModule.address], accounts[0].address, "Kelly ETH Set", "KETH");
+    [ammModule.address, basicIssuanceModule.address], accounts[0].address, "Kelly ETH Set", "KETH", [BigNumber.from(50), BigNumber.from(50)]);
 
   console.log("SetToken has been created in tx: ", receipt.hash);
 
