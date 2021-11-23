@@ -107,6 +107,26 @@ async function main(): Promise<void> {
   console.log(`User WETH Balance: ${wethBalance}`);
 
   /**
+   * SetTokenViewer
+   */
+  const SetTokenViewer = await hre.ethers.getContractFactory("SetTokenViewer");
+  const setTokenViewer = await SetTokenViewer.deploy();
+
+  await setTokenViewer.deployed();
+
+  console.log("SetTokenViewer deployed to:", setTokenViewer.address);
+
+  /**
+   * StreamingFeeModuleViewer
+   */
+  const StreamingFeeModuleViewer = await hre.ethers.getContractFactory("StreamingFeeModuleViewer");
+  const streamingFeeModuleViewer = await StreamingFeeModuleViewer.deploy();
+
+  await streamingFeeModuleViewer.deployed();
+
+  console.log("StreamingFeeModuleViewer deployed to:", streamingFeeModuleViewer.address);
+
+  /**
    * NavIssuanceModule
    */
   const NavIssuanceModule = await hre.ethers.getContractFactory("NavIssuanceModule");
@@ -369,7 +389,7 @@ async function main(): Promise<void> {
   const pair = await uniswapV2Factory.getPair(weth.address, uni.address);
   console.log(`Pair Address: ${pair}`);
 
-  const uniswapV2Pair = await await hre.ethers.getContractAt(UniswapV2PairCompiled.abi, pair);
+  const uniswapV2Pair = await hre.ethers.getContractAt(UniswapV2PairCompiled.abi, pair);
 
   var totalSupply = await uniswapV2Pair.totalSupply();
   console.log("UniswapV2Pair totalSupply:", totalSupply.toString());
@@ -401,6 +421,18 @@ async function main(): Promise<void> {
 
   let pairBalance = await uniswapV2Pair.balanceOf(setToken.address);
   console.log(`SetToken LP Balance: ${pairBalance}`);
+
+
+  /**
+   * UniswapPairPriceAdapter
+   */
+
+  const UniswapPairPriceAdapter = await hre.ethers.getContractFactory("UniswapPairPriceAdapter");
+  const uniswapPairPriceAdapter = await UniswapPairPriceAdapter.deploy(controller.address, uniswapV2Factory.address, [pair]);
+
+  await uniswapPairPriceAdapter.deployed();
+
+  console.log("UniswapPairPriceAdapter deployed to:", uniswapPairPriceAdapter.address);
 
   [addresses, amounts] = await basicIssuanceModule.getRequiredComponentUnitsForIssue(setToken.address, '1000000000000000000');
   console.log(`${addresses} ${amounts}`);
