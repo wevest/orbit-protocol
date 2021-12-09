@@ -91,6 +91,7 @@ export { SynthetixExchangerMock } from "../../typechain/SynthetixExchangerMock";
 export { SynthMock } from "../../typechain/SynthMock";
 export { TokenSwap } from "../../typechain/TokenSwap";
 export { TradeModule } from "../../typechain/TradeModule";
+export { ETFFundModule } from "../../typechain/ETFFundModule";
 export { TradeAdapterMock } from "../../typechain/TradeAdapterMock";
 export { Uint256ArrayUtilsMock } from "../../typechain/Uint256ArrayUtilsMock";
 export { Uni } from "../../typechain/Uni";

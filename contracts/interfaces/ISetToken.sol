@@ -119,6 +119,7 @@ interface ISetToken is IERC20 {
     function getDefaultPositionRealUnit(address _component) external view returns(int256);
     function getExternalPositionRealUnit(address _component, address _positionModule) external view returns(int256);
     function getComponents() external view returns(address[] memory);
+    function getWeights() external view returns(uint[] memory);
     function getExternalPositionModules(address _component) external view returns(address[] memory);
     function getExternalPositionData(address _component, address _positionModule) external view returns(bytes memory);
     function isExternalPositionModule(address _component, address _module) external view returns(bool);

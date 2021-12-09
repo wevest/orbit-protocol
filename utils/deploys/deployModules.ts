@@ -17,6 +17,7 @@ import {
   StakingModule,
   StreamingFeeModule,
   TradeModule,
+  ETFFundModule,
   WrapModule,
   WrapModuleV2
 } from "../contracts";
@@ -39,6 +40,7 @@ import { SingleIndexModule__factory } from "../../typechain/factories/SingleInde
 import { StakingModule__factory } from "../../typechain/factories/StakingModule__factory";
 import { StreamingFeeModule__factory } from "../../typechain/factories/StreamingFeeModule__factory";
 import { TradeModule__factory } from "../../typechain/factories/TradeModule__factory";
+import { ETFFundModule__factory } from "../../typechain/factories/ETFFundModule__factory";
 import { WrapModule__factory } from "../../typechain/factories/WrapModule__factory";
 import { WrapModuleV2__factory } from "../../typechain/factories/WrapModuleV2__factory";
 
@@ -91,6 +93,10 @@ export default class DeployModules {
 
   public async deployTradeModule(controller: Address): Promise<TradeModule> {
     return await new TradeModule__factory(this._deployerSigner).deploy(controller);
+  }
+
+  public async deployETFFundModule(controller: Address, usdc: Address): Promise<ETFFundModule> {
+    return await new ETFFundModule__factory(this._deployerSigner).deploy(controller, usdc);
   }
 
   public async deployWrapModule(controller: Address, weth: Address): Promise<WrapModule> {

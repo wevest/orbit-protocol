@@ -131,6 +131,9 @@ contract SetToken is ERC20 {
     // List of components
     address[] public components;
 
+    // List of weights
+    uint[] public weights;
+
     // Mapping that stores all Default and External position information for a given component.
     // Position quantities are represented as virtual units; Default positions are on the top-level,
     // while external positions are stored in a module array and accessed through its externalPositions mapping
@@ -173,6 +176,7 @@ contract SetToken is ERC20 {
         manager = _manager;
         positionMultiplier = PreciseUnitMath.preciseUnitInt();
         components = _components;
+        weights = _weights;
 
         // Modules are put in PENDING state, as they need to be individually initialized by the Module
         for (uint256 i = 0; i < _modules.length; i++) {
@@ -431,6 +435,10 @@ contract SetToken is ERC20 {
 
     function getComponents() external view returns(address[] memory) {
         return components;
+    }
+
+    function getWeights() external view returns(uint[] memory) {
+        return weights;
     }
 
     function getDefaultPositionRealUnit(address _component) public view returns(int256) {
